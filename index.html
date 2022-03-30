@@ -3,24 +3,34 @@
     <body>
         <div id="root"></div>
     </body>
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        const root = document.getElementById("root");
-        let counter = 0;
+
         function App() {
-            const [counter, setCounter] = React.useState(0);
-            const onClick = () => {
-                setCounter(counter+1);
+            const [minutes, setMinutes] = React.useState();
+            const onChange = (event) => {
+                setMinutes(event.target.value);
             };
             return (
                 <div>
-                    <h3>Total clicks: {counter}</h3>
-                    <button onClick={onClick}>Click me</button>    
+                    <h3 className="hi">Super Converter</h3>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input 
+                        value={minutes}
+                        id="minutes"
+                        placehoder="Minutes"
+                        tpye="number"
+                        onChange={onChange}/>
+                    <h4>You want to convert {minutes}</h4>
+                    <label htmlFor="hours">Hours</label>
+                    <input id="hours" placehoder="Hours" tpye="number"/>
                 </div>
             );
         }
+
+        const root = document.getElementById("root");
         ReactDOM.render(<App />, root);
         // JSX를 사용하지 않은 코드
         // const h3 = React.createElement(
